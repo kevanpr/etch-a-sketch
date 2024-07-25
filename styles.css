@@ -20,6 +20,15 @@ body {
     height: 100%;
 }
 
+.leftContainer, .rightContainer {
+    width: 40%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 30%;
