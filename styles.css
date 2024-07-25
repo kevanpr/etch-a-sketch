@@ -7,6 +7,19 @@ body {
     background-repeat: no-repeat;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 30%;
