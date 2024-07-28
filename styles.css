@@ -175,3 +175,13 @@ button.clear {
     font-size: 32px;
     text-decoration: none;
 }
+
+img.canvas {
+    position: relative;
+}
+
+.sketch {
+    position: absolute;
+    width: 680px;
+    height: 500px;
+}
