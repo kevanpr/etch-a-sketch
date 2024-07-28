@@ -184,4 +184,24 @@ img.canvas {
     position: absolute;
     width: 680px;
     height: 500px;
+    display: flex;
+    flex-direction: column;
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    flex: 1;
+  }
+  
+  .column {
+    flex-basis: 100%;
+  }
+  
+  @media screen and (min-width: 680px) {
+    .column {
+      flex: 1;
+    }
+  }
