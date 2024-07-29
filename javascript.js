@@ -13,5 +13,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
             row.appendChild(column);
         };
     };
+
+    let slider = document.querySelector(".slider");
+    let sliderValue = document.querySelector(".sliderValue");
     
+    slider.addEventListener('input', () => {
+        sliderValue.textContent = slider.value;
+    });
 });
