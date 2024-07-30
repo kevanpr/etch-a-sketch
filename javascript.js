@@ -17,10 +17,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
         }
 
+        column.addEventListener('mouseover', )
+
 
 
     }
 
+
+    // Set pixel size
     function pixelSize() {
         let gridPixels = sketch.querySelectorAll('div');
         gridPixels.forEach(gridPixel => gridPixel.remove());
@@ -36,10 +40,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
         sliderValue.textContent = slider.value;
     });
 
-    // change color
+    // change color - normal mode
     function colorBlack () {
         column.style.backgroundColor = 'black';
     }
+
+    // change color - rainbow mode
+    function getRandomNumber() {
+		return Math.floor(Math.random() * hex.length)
+	}
 
     function colorRainbow () {
         let randomColor = "#"
