@@ -16,6 +16,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 row.appendChild(column);
             }
         }
+
+
+
     }
 
     function pixelSize() {
@@ -23,7 +26,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         gridPixels.forEach(gridPixel => gridPixel.remove());
         createGrid(slider.value);
     }
-    
+
     // On Page Load - default size
     createGrid(16);
 
@@ -32,6 +35,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
     slider.addEventListener('input', () => {
         sliderValue.textContent = slider.value;
     });
+
+    // change color
+    function colorBlack () {
+        column.style.backgroundColor = 'black';
+    }
+
+    function colorRainbow () {
+        let randomColor = "#"
+
+		for (let i = 0; i < 6; i++) {
+			randomColor += hex[getRandomNumber()]
+		}
+
+        column.style.backgroundColor = randomColor;
+    }    
 
     });
 
