@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let clear = document.querySelector(".clear");
     let slider = document.querySelector(".slider");
     let sliderValue = document.querySelector(".sliderValue");
-    
+
     // Brush color pick
     normal.addEventListener('click', function () {
         return brushColor = "normal";
@@ -25,6 +25,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
     clear.addEventListener('click', function () {
         return brushColor = "clear";
     });
+
+    function colorGrid () {
+        switch (brushColor) {
+            case normal:
+                this.style.backgroundColor = "black";
+                break;
+            case rainbow:
+                break;
+            case erase: 
+                break;
+            default:
+        }
+    }
 
     // Set pixel size
     function pixelSize() {
