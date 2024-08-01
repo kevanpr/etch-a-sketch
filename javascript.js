@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         return brushColor = "clear";
     });
 
-    function colorGrid () {
+    function colorBrush () {
         switch (brushColor) {
             case normal:
                 this.style.backgroundColor = "black";
@@ -38,6 +38,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 this.style.backgroundColor = rainbowBrush;
                 break;
             default:
+                this.style.backgroundColor = "black";
         }
     }
 
@@ -52,8 +53,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         return hsbaColor;
     }
 
-
-
     // Set pixel size
     function pixelSize() {
         let gridPixels = sketch.querySelectorAll('div');
@@ -61,7 +60,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
         createGrid(slider.value);
     }
 
+    function createGrid (gridNumber) { 
+        let gridArea = gridNumber * gridNumber;
+        for (let i = 1; i <= gridArea; i++) {
+            let gridItem = document.createElement('div');
+            sketch.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
+            sketch.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`;
+            sketch.insertAdjacentElement('beforeend', gridItem);
+        } 
+        var gridPixels = sketch.querySelectorAll('div');
+        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+    }
 
+    /*
     function createGrid (gridNumber) {
         for (let j = 1; j <= gridNumber; j++) {
             let row = document.createElement("div");
@@ -74,8 +85,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 row.appendChild(column);
             }
         }
-    }
 
+        let gridPixels = sketch.querySelectorAll('div');
+        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+    }
+    */
 
 
     // On Page Load - default size
@@ -98,6 +112,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 /*
+
+let gridPixels = sketch.querySelectorAll('div');
+        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+
+    function createGrid (gridNumber) {
+        for (let j = 1; j <= gridNumber; j++) {
+            let row = document.createElement("div");
+            row.setAttribute("class", "row");
+            sketch.appendChild(row);
+        
+            for (let i = 1; i <= gridNumber; i++) {
+                let column = document.createElement("div");
+                column.setAttribute("class", "column");
+                row.appendChild(column);
+            }
+        }
 
     function createGrid (gridNumber) {
         for (let j = 1; j <= gridNumber; j++) {
