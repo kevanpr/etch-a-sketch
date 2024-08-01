@@ -31,13 +31,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
             case normal:
                 this.style.backgroundColor = "black";
                 break;
-            case rainbow:
+            case erase:
+                this.style.backgroundColor = "white";
                 break;
-            case erase: 
+            case erase:
+                this.style.backgroundColor = rainbowBrush;
                 break;
             default:
         }
     }
+
+    // rainbow brush
+    function rainbowBrush () {
+        // find the hue, which is a number from 0 to 360
+        const hue = (frameCount * 10) % 360;
+  
+        // set the color and brush style
+        const hsbaColor = color(`hsba(${hue}, 100%, 100%, 0.6)`);
+
+        return hsbaColor;
+    }
+
+
 
     // Set pixel size
     function pixelSize() {
