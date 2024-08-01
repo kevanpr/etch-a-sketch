@@ -26,15 +26,26 @@ window.addEventListener("DOMContentLoaded", (event) => {
         return brushColor = "clear";
     });
 
+    function userColorSelection(event) {
+        color = event.target.value;
+    }
+
+    normal.addEventListener('change', userColorSelection, false);
+    normal.addEventListener('input', userColorSelection, false);
+    rainbow.addEventListener('change', userColorSelection, false);
+    rainbow.addEventListener('input', userColorSelection, false);
+    erase.addEventListener('change', userColorSelection, false);
+    erase.addEventListener('input', userColorSelection, false);
+
     function colorBrush () {
         switch (brushColor) {
-            case normal:
+            case "normal":
                 this.style.backgroundColor = "black";
                 break;
-            case erase:
-                this.style.backgroundColor = "white";
+            case "erase":
+                this.style.backgroundColor = "";
                 break;
-            case erase:
+            case "rainbow":
                 this.style.backgroundColor = rainbowBrush;
                 break;
             default:
@@ -42,13 +53,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     }
 
+    
+
     // rainbow brush
     function rainbowBrush () {
         // find the hue, which is a number from 0 to 360
         const hue = (frameCount * 10) % 360;
   
         // set the color and brush style
-        const hsbaColor = color(`hsba(${hue}, 100%, 100%, 0.6)`);
+        const hsbaColor = brushColor(`hsba(${hue}, 100%, 100%, 0.6)`);
 
         return hsbaColor;
     }
@@ -72,25 +85,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
     }
 
-    /*
-    function createGrid (gridNumber) {
-        for (let j = 1; j <= gridNumber; j++) {
-            let row = document.createElement("div");
-            row.setAttribute("class", "row");
-            sketch.appendChild(row);
-        
-            for (let i = 1; i <= gridNumber; i++) {
-                let column = document.createElement("div");
-                column.setAttribute("class", "column");
-                row.appendChild(column);
-            }
-        }
-
-        let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+    function userColorSelection(event) {
+        color = event.target.value;
     }
-    */
-
 
     // On Page Load - default size
     createGrid(16);
@@ -101,60 +98,43 @@ window.addEventListener("DOMContentLoaded", (event) => {
         sliderValue.textContent = slider.value;
     });
 
-
-
-
-
-
-
     });
-
 
 
 /*
 
-let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+    normal.addEventListener('click', function () {
+        return brushColor = "normal";
+    });
 
-    function createGrid (gridNumber) {
-        for (let j = 1; j <= gridNumber; j++) {
-            let row = document.createElement("div");
-            row.setAttribute("class", "row");
-            sketch.appendChild(row);
-        
-            for (let i = 1; i <= gridNumber; i++) {
-                let column = document.createElement("div");
-                column.setAttribute("class", "column");
-                row.appendChild(column);
-            }
+    rainbow.addEventListener('click', function () {
+        return brushColor = "rainbow";
+    });
+
+    erase.addEventListener('click', function () {
+        return brushColor = "erase";
+    });
+
+    clear.addEventListener('click', function () {
+        return brushColor = "clear";
+    });
+
+    function colorBrush () {
+        switch (brushColor) {
+            case normal:
+                this.style.backgroundColor = "black";
+                break;
+            case erase:
+                this.style.backgroundColor = "white";
+                break;
+            case erase:
+                this.style.backgroundColor = rainbowBrush;
+                break;
+            default:
+                this.style.backgroundColor = "black";
         }
-
-    function createGrid (gridNumber) {
-        for (let j = 1; j <= gridNumber; j++) {
-            let row = document.createElement("div");
-            row.setAttribute("class", "row");
-            sketch.appendChild(row);
+    }
         
-            for (let i = 1; i <= gridNumber; i++) {
-                let column = document.createElement("div");
-                column.setAttribute("class", "column");
-                row.appendChild(column);
-            }
-        }
-
-        let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorGrid));
-    }
-
-    // change color - normal mode
-    function colorBlack () {
-        // column.style.backgroundColor = 'black';
-        let column = document.querySelectorAll('.column');
-        column.addEventListener('mouseover', function (){
-            this.setAttribute("class", "black");
-        });
-    }
-
     // change color - rainbow mode  
     function getRandomNumber() {
 		return Math.floor(Math.random() * hex.length)
@@ -169,23 +149,4 @@ let gridPixels = sketch.querySelectorAll('div');
 
         column.style.backgroundColor = randomColor;
     }    
-
-    function createGrid (gridNumber) { 
-        let gridArea = gridNumber * gridNumber;
-        for (let i = 1; i <= gridArea; i++) {
-            let gridItem = document.createElement('div');
-            sketch.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
-            sketch.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`;
-            sketch.insertAdjacentElement('beforeend', gridItem);
-        } 
-        // let gridPixels = sketch.querySelectorAll('div');
-        // gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorGrid));
-    }
-
-    function pixelSize() {
-        let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.remove());
-        createGrid(slider.value);
-    }
-
 */
