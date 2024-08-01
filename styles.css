@@ -217,3 +217,11 @@ img.canvas {
       flex: 1;
     }
   }
+
+  
+  /* change div color: black */
+
+  .black {
+    flex-basis: 100%;
+    background: black;
+}

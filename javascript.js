@@ -1,6 +1,10 @@
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let sketch = document.querySelector(".sketch");
+    let normal = document.querySelector(".normal");
+    let rainbow = document.querySelector(".rainbow");
+    let erase = document.querySelector(".erase");
+    let clear = document.querySelector(".clear");
     let slider = document.querySelector(".slider");
     let sliderValue = document.querySelector(".sliderValue");
 
@@ -16,11 +20,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 row.appendChild(column);
             }
         }
-
-        column.addEventListener('mouseover', )
-
-
-
     }
 
 
@@ -31,6 +30,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         createGrid(slider.value);
     }
 
+    // Brush color pick 
+
+
+
     // On Page Load - default size
     createGrid(16);
 
@@ -40,12 +43,45 @@ window.addEventListener("DOMContentLoaded", (event) => {
         sliderValue.textContent = slider.value;
     });
 
-    // change color - normal mode
-    function colorBlack () {
-        column.style.backgroundColor = 'black';
+
+
+
+
+
+
+    });
+
+
+
+/*
+
+    function createGrid (gridNumber) {
+        for (let j = 1; j <= gridNumber; j++) {
+            let row = document.createElement("div");
+            row.setAttribute("class", "row");
+            sketch.appendChild(row);
+        
+            for (let i = 1; i <= gridNumber; i++) {
+                let column = document.createElement("div");
+                column.setAttribute("class", "column");
+                row.appendChild(column);
+            }
+        }
+
+        let gridPixels = sketch.querySelectorAll('div');
+        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorGrid));
     }
 
-    // change color - rainbow mode
+    // change color - normal mode
+    function colorBlack () {
+        // column.style.backgroundColor = 'black';
+        let column = document.querySelectorAll('.column');
+        column.addEventListener('mouseover', function (){
+            this.setAttribute("class", "black");
+        });
+    }
+
+    // change color - rainbow mode  
     function getRandomNumber() {
 		return Math.floor(Math.random() * hex.length)
 	}
@@ -59,26 +95,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         column.style.backgroundColor = randomColor;
     }    
-
-    });
-
-
-
-/*
-
-    slider.addEventListener('mouseup', () => {
-        for (let j = 1; j <= slider.value; j++) {
-            let row = document.createElement("div");
-            row.setAttribute("class", "row");
-            sketch.appendChild(row);
-        
-            for (let i = 1; i <= slider.value; i++) {
-                let column = document.createElement("div");
-                column.setAttribute("class", "column");
-                row.appendChild(column);
-            };
-        };
-    });
 
     function createGrid (gridNumber) { 
         let gridArea = gridNumber * gridNumber;
