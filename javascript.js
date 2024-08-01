@@ -1,3 +1,4 @@
+let brushColor;
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let sketch = document.querySelector(".sketch");
@@ -7,6 +8,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let clear = document.querySelector(".clear");
     let slider = document.querySelector(".slider");
     let sliderValue = document.querySelector(".sliderValue");
+    
+    // Brush color pick
+    normal.addEventListener('click', function () {
+        return brushColor = "normal";
+    });
+
+    rainbow.addEventListener('click', function () {
+        return brushColor = "rainbow";
+    });
+
+    erase.addEventListener('click', function () {
+        return brushColor = "erase";
+    });
+
+    clear.addEventListener('click', function () {
+        return brushColor = "clear";
+    });
+
+    // Set pixel size
+    function pixelSize() {
+        let gridPixels = sketch.querySelectorAll('div');
+        gridPixels.forEach(gridPixel => gridPixel.remove());
+        createGrid(slider.value);
+    }
+
 
     function createGrid (gridNumber) {
         for (let j = 1; j <= gridNumber; j++) {
@@ -21,16 +47,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
         }
     }
-
-
-    // Set pixel size
-    function pixelSize() {
-        let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.remove());
-        createGrid(slider.value);
-    }
-
-    // Brush color pick 
 
 
 
