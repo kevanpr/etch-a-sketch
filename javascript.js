@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let slider = document.querySelector(".slider");
     let sliderValue = document.querySelector(".sliderValue");
 
-    // Brush color pick
+    // Brush color value
     normal.addEventListener('click', function () {
         return brushColor = "normal";
     });
@@ -22,21 +22,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         return brushColor = "erase";
     });
 
-    clear.addEventListener('click', function () {
-        sketch.innerHTML = "";
-        createGrid(slider.value);
-    });
-
     function userColorSelection(event) {
         color = event.target.value;
     }
-
-    normal.addEventListener('change', userColorSelection, false);
-    normal.addEventListener('input', userColorSelection, false);
-    rainbow.addEventListener('change', userColorSelection, false);
-    rainbow.addEventListener('input', userColorSelection, false);
-    erase.addEventListener('change', userColorSelection, false);
-    erase.addEventListener('input', userColorSelection, false);
 
     function colorBrush () {
         switch (brushColor) {
@@ -54,6 +42,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     }
 
+    normal.addEventListener('change', userColorSelection, false);
+    normal.addEventListener('input', userColorSelection, false);
+    rainbow.addEventListener('change', userColorSelection, false);
+    rainbow.addEventListener('input', userColorSelection, false);
+    erase.addEventListener('change', userColorSelection, false);
+    erase.addEventListener('input', userColorSelection, false);
+
     // Set pixel size
     function pixelSize() {
         let gridPixels = sketch.querySelectorAll('div');
@@ -61,6 +56,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
         createGrid(slider.value);
     }
 
+    slider.addEventListener('mouseup', pixelSize);
+
+    // Show pixel size
+    slider.addEventListener('input', () => {
+        sliderValue.textContent = slider.value;
+    });
+
+    // Create canvas
     function createGrid (gridNumber) { 
         let gridArea = gridNumber * gridNumber;
         for (let i = 1; i <= gridArea; i++) {
@@ -70,71 +73,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
             sketch.insertAdjacentElement('beforeend', gridItem);
         } 
         let gridPixels = sketch.querySelectorAll('div');
-        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
+        gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));    
     }
 
-    function userColorSelection(event) {
-        color = event.target.value;
-    }
-
-    // On Page Load - default size
+    // Default canvas size
     createGrid(16);
 
-    slider.addEventListener('mouseup', pixelSize);
-
-    slider.addEventListener('input', () => {
-        sliderValue.textContent = slider.value;
-    });
-
-    });
-
-
-/*
-
-    normal.addEventListener('click', function () {
-        return brushColor = "normal";
-    });
-
-    rainbow.addEventListener('click', function () {
-        return brushColor = "rainbow";
-    });
-
-    erase.addEventListener('click', function () {
-        return brushColor = "erase";
-    });
-
+    // Clear canvas button
     clear.addEventListener('click', function () {
-        return brushColor = "clear";
+        sketch.innerHTML = "";
+        createGrid(slider.value);
     });
 
-    function colorBrush () {
-        switch (brushColor) {
-            case normal:
-                this.style.backgroundColor = "black";
-                break;
-            case erase:
-                this.style.backgroundColor = "white";
-                break;
-            case erase:
-                this.style.backgroundColor = rainbowBrush;
-                break;
-            default:
-                this.style.backgroundColor = "black";
-        }
-    }
-        
-    // change color - rainbow mode  
-    function getRandomNumber() {
-		return Math.floor(Math.random() * hex.length)
-	}
-
-    function colorRainbow () {
-        let randomColor = "#"
-
-		for (let i = 0; i < 6; i++) {
-			randomColor += hex[getRandomNumber()]
-		}
-
-        column.style.backgroundColor = randomColor;
-    }    
-*/
+    });
