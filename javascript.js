@@ -23,7 +23,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 
     clear.addEventListener('click', function () {
-        return brushColor = "clear";
+        sketch.innerHTML = "";
+        createGrid(slider.value);
     });
 
     function userColorSelection(event) {
@@ -52,33 +53,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 this.style.backgroundColor = "black";
         }
     }
-      
-      function draw() {
-        colorMode(HSB);
-        // background(frameCount % 360, 100, 100);
-        if(mouseIsPressed){
-         noStroke();
-          stroke((5*frameCount) % 360, 40, 100);
-          fill((5*frameCount) % 360, 100, 100);
-      
-          // ellipse(mouseX, mouseY, 30,30);
-          strokeWeight(20);
-          line(mouseX, mouseY, pmouseX, pmouseY);
-        }
-        
-        colorMode(RGB);
-      }
-
-    // rainbow brush
-    function rainbowBrush () {
-        // find the hue, which is a number from 0 to 360
-        const hue = (frameCount * 10) % 360;
-  
-        // set the color and brush style
-        const hsbaColor = (`hsba(${hue}, 100%, 100%, 0.6)`);
-
-        return hsbaColor;
-    }
 
     // Set pixel size
     function pixelSize() {
@@ -95,7 +69,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             sketch.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`;
             sketch.insertAdjacentElement('beforeend', gridItem);
         } 
-        var gridPixels = sketch.querySelectorAll('div');
+        let gridPixels = sketch.querySelectorAll('div');
         gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorBrush));
     }
 
